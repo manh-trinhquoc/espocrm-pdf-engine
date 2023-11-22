@@ -1,0 +1,6 @@
+{
+  "scriptList": [
+      "__APPEND__",
+      "client/custom/modules/poc-pdf-engine/lib/init.js"
+  ]
+}
