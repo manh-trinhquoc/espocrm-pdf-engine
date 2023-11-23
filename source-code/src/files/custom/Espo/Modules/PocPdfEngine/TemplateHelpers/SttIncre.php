@@ -27,13 +27,12 @@ class SttIncre implements Helper
             static::$current += $increase;
         }
 
-        $get = $data->getOption('get');
-        if ($get) {
+        if ($data->getOption('get')) {
             return Result::createSafeString(
                 static::$current
             );
         }
-        // $text = $data->getArgumentList()[0] ?? '';
+
         return Result::createSafeString(
             ""
         );

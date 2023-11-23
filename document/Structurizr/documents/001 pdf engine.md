@@ -18,7 +18,7 @@
     - Cần cho quyền ghi folder build: ` site\vendor\tecnickcom\tcpdf\fonts `.
     - Folder build đã fix không custom được. Về lý thuyết có thể custom bằng cách định nghĩa hằng số: ` K_PATH_FONTS `
 
-## Template helper
+## Thêm Template helper
 ### dubasTranslate helper
 This helper will let you get label of field in specific language.
 You just need to add this string to your template:
@@ -58,6 +58,17 @@ You just need to add this string to your template:
 + `field` - Name of field with options;
 + `language` - optional language parameter which determine in which you want to get translation. If you don't use this parameter, helper will use as default `en_US`.
 
+### sttIncre
+- Hàm đếm số để đánh stt trong bảng
+
+**Parameters:**
++ `sttIncre` - tên hàm;
++ `start` - giá trị khởi tạo;
++ `increase` - giá trị tăng thêm;
++ `get` - có trả về giá trị không. nếu `get=true` thì trả về giá trị hiện tại;
+
+### renderTemplate
+- Hàm render 1 template bất kỳ bên ngoài và trả về $html render được
 
 ## Tham khảo
 - php pdf engine lib: https://ourcodeworld.com/articles/read/226/top-5-best-open-source-pdf-generation-libraries-for-php
