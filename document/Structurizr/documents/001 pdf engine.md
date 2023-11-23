@@ -76,3 +76,4 @@ You just need to add this string to your template:
 - template helper dịch chuỗi extension: https://github.com/dubas-pro/ext-template-helper
 - ví dụ tcpdf: https://tcpdf.org/examples/example_061/
 - add custom emoji to template: https://forum.espocrm.com/forum/general/84550-pdf-template-fonts-unicode-emoji
+- template custom helper espocrm doc: https://docs.espocrm.com/development/template-custom-helper/
