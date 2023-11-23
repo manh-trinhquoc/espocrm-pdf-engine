@@ -4,7 +4,8 @@
 - Có 2 engine tích hợp sẵn trong core: tcpdf và dompdf. Enginee xịn nhất: Snappy https://github.com/KnpLabs/snappy
 - Có thể tự viết engine mới
 - Add thêm font vào pdf engine
-- Add template helper
+- Add template helper: hàm dịch string
+- render template là file .html
 
 ## Reverse Engineer
 - File chịu trách nhiệm gen pdf: `  Espo\Tools\Pdf\Service; `
