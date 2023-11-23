@@ -1,0 +1,7 @@
+{
+    "dubasTranslate": "Espo\\Modules\\PocPdfEngine\\TemplateHelpers\\DubasTranslate",
+    "dubasTranslateOption": "Espo\\Modules\\PocPdfEngine\\TemplateHelpers\\DubasTranslateOption",
+    "dubasTranslateValue": "Espo\\Modules\\PocPdfEngine\\TemplateHelpers\\DubasTranslateValue",
+    "sttIncre": "Espo\\Modules\\PocPdfEngine\\TemplateHelpers\\SttIncre",
+    "renderTemplate": "Espo\\Modules\\PocPdfEngine\\TemplateHelpers\\RenderTemplate"
+}

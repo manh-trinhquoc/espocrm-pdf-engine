@@ -1,0 +1,207 @@
+<style>
+    .test {
+        color: blue;
+    }
+
+    p {
+        color: green;
+    }
+
+    th,
+    td {
+        font-weight: bold;
+    }
+
+</style>
+<p class="test">
+    test class blue</p>
+<p class="test">
+    test sttIncre
+    {{sttIncre increase=1 get=true}}</p>
+<table width="100%" style="color:black;">
+    <tbody>
+        <tr>
+            <td rowspan="0" width="30%" style="text-align: left;">
+                <p><img style="max-width:100%;" src="?entryPoint=attachment&amp;id=6386ccb5a6ea27d9e"><br></p>
+            </td>
+            <td width="70%" style="text-align: right;">
+                <p></p>
+                <p>
+                    <b>CÔNG TY</b>
+                </p>
+                <p style="font-size:8px;">
+                    <b>
+                        <i>
+                            Địa chỉ: Việt Nam
+                            <br>
+                            Điện thoại:
+                        </i>
+                    </b>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h1 style="text-align: center; ">BÁO GIÁ SẢN PHẨM</h1>
+<table style="color:black; font-weight:bold; width:100%;" class="table">
+    <tbody>
+        <tr>
+            <td style="font-size: 10px; text-align: right;">
+                <p>
+                    Số:
+                    {{number}}
+                    <br>
+                    Ngày:
+                    {{dateInvoiced}}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 10px;">
+                <p>
+                    <span style="font-size: 14px;">THÔNG TIN KHÁCH HÀNG
+                    </span>
+                    <br>
+                    Họ và tên khách hàng:
+                    {{clientFullName}}
+                    <br>
+                    Địa chỉ:
+                    {{{billingAddressStreet}}}
+                    {{#if billingAddressCity}},
+                    {{billingAddressCity}},
+                    {{billingAddressCountry}}
+                    {{/if}}
+                    <br>
+                    Số điện thoại:
+                    {{clientPhone}}<br>
+                    Địa điểm nhận hàng:
+                    {{{billingAddressStreet}}}
+                    {{#if billingAddressCity}},
+                    {{billingAddressCity}},
+                    {{billingAddressCountry}}
+                    {{/if}}
+                </p>
+                <p>Kính Gửi:
+                    {{clientName}}<br>
+                    Trước tiên, Công ty xin cảm ơn
+                    {{clientName}}
+                    đã mời chúng tôi đề xuất giá sản phẩm
+                    {{productName}}
+                    Dưới đây là đề xuất giá bán chi
+                    tiết mà chúng tôi đưa ra:<br></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table border="1pt" cellpadding="2" class="table table-bordered" style="font-size:10px; border-collapse: collapse;">
+    <tbody>
+        <tr style="background-color:#1f497d; color:white;">
+            <th align="center" style="border-right-color:white;">
+                <b><br>Stt</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Tên thiết bị/ sản phẩm</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Mô tả chi tiết</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Hình ảnh sản phẩm</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Mã sản phẩm</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b><br>Số lượng</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b><br>Đơn vị</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Đơn giá (VND)</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b><br>VAT</b>
+            </th>
+            <th align="center" style="border-right-color:white;">
+                <b>Tổng cộng</b>
+            </th>
+        </tr>
+        <tr style="background-color:#f6b26b;">
+            <td style="text-align:center; border-right-color:white;">
+                <b>I</b>
+            </td>
+            <td colspan="9" style="border-right-color:white;">
+                <b>VẬT TƯ CUNG CẤP/SẢN PHẨM</b>
+            </td>
+        </tr>
+        <!-- {{#each itemList}} -->
+        <!-- {{#if sanPham}} -->
+        <tr>
+            <td>{{sttIncre increase=1 get=true}}</td>
+            <td>{{name}}</td>
+            <td>{{{description}}}</td>
+            <td><img src="{{file hinhAnhId}}"></td>
+            <td align="center">{{productCode}}</td>
+            <td align="center">{{numberFormat quantity_RAW  decimals=0}}</td>
+            <td align="center">{{unit}}</td>
+            <td align="center">{{numberFormat unitPrice_RAW  decimals=0}}</td>
+            <td align="center">{{numberFormat tax_RAW  decimals=0}}</td>
+            <td align="right">{{numberFormat amount_RAW  decimals=0}}</td>
+        </tr>
+        <!-- {{/if}} -->
+        <!-- {{/each}} -->
+        <tr style="background-color:#f6b26b;">
+            <td style="text-align:center; border-right-color:white;">
+                <b>II</b>
+            </td>
+            <td colspan="9" style="border-right-color:white;">
+                <b>NHÂN CÔNG</b>
+                {{sttIncre start=0}}</td>
+        </tr>
+        <!-- {{#each itemList}} -->
+        <!-- {{#if nhanCong}} -->
+        <tr>
+            <td>{{sttIncre increase=1 get=true}}</td>
+            <td colspan="3">{{name}}</td>
+            <td align="center">{{productCode}}</td>
+            <td align="center">{{numberFormat quantity_RAW  decimals=0}}</td>
+            <td align="center">{{unit}}</td>
+            <td align="center">{{numberFormat unitPrice_RAW  decimals=0}}</td>
+            <td align="center">{{numberFormat tax_RAW  decimals=0}}</td>
+            <td align="right">{{numberFormat amount_RAW  decimals=0}}</td>
+        </tr>
+        <!-- {{/if}} -->
+        <!-- {{/each}} -->
+        <tr style="background-color:#f6b26b;">
+            <td style="text-align:center; border-right-color:white;">
+                <b>II</b>
+            </td>
+            <td colspan="9" style="border-right-color:white;">
+                <b>VẬN CHUYỂN</b>
+                {{sttIncre start=10}}</td>
+        </tr>
+        <!-- {{#each itemList}} -->
+        <!-- {{#if vanChuyen}} -->
+        <tr>
+            <td>{{sttIncre increase=1 get=true}}</td>
+            <td colspan="3">{{name}}</td>
+            <td align="center">{{productCode}}</td>
+            <td align="center">{{numberFormat quantity_RAW  decimals=0}}</td>
+            <td align="center">{{unit}}</td>
+            <td align="center">{{numberFormat unitPrice_RAW  decimals=0}}</td>
+            <td align="center">{{numberFormat tax_RAW  decimals=0}}</td>
+            <td align="right">{{numberFormat amount_RAW  decimals=0}}</td>
+        </tr>
+        <!-- {{/if}} -->
+        <!-- {{/each}} -->
+        <tr style="background-color:#1f497d; color:white;">
+            <td colspan="7" align="left" style="border-right-color:white;" class="test">
+                <b>Tổng giá trị</b>
+            </td>
+            <td colspan="3" align="right" style="border-right-color:white;">
+                <b>{{numberFormat grandTotalAmount_RAW  decimals=0}}</b>
+            </td>
+        </tr>
+    </tbody>
+</table>

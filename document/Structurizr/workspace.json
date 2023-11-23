@@ -2,7 +2,7 @@
   "id" : 1,
   "name" : "Espo Plugin",
   "description" : "Description",
-  "lastModifiedDate" : "2023-10-20T03:46:48Z",
+  "lastModifiedDate" : "2023-11-23T08:42:32Z",
   "properties" : {
     "structurizr.dsl" : "d29ya3NwYWNlICJFc3BvIFBsdWdpbiIgewogICAgIWFkcnMgZGVjaXNpb25zCiAgICAhZG9jcyBkb2N1bWVudHMKICAgIG1vZGVsIHsKICAgICAgICAKICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgCgogICAgICAgIHRoZW1lIGRlZmF1bHQKCiAgICAgICAgLy8gdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvbWljcm9zb2Z0LWF6dXJlLTIwMjEuMDEuMjYvdGhlbWUuanNvbgogICAgfQoKfQo="
   },
@@ -10,9 +10,9 @@
   "model" : { },
   "documentation" : {
     "sections" : [ {
-      "content" : "## Parent - children team\n\n- Thử triển khai logic team cha - con trên espocrm\n- Nguyên tắc:\n1. user sẽ được thao tác với các bản ghi thuộc team con tương tự như các bản ghi thuộc team mình\n\n## Hướng triển khai chung\n- mở quyền thao tác với bản ghi là all và dùng hook, custom code ở backend để chặn các thao tác không được phép\n- team sẽ có thêm 1 trường là parent. \n- tạo role có quyền thao tác với mọi record của entity và gán cho User\n- User sẽ có thêm 1 trường là fullAccessRoles lưu các role full access ở trên\n- Viết hàm merge acl custom với đầu vào là các role loại trừ các role full access\n- Nếu kết quả là team thì check tiếp logic record có thuộc team con hay không\n\n## Demo quyền đọc contact\n- Team 1 là bố của Team 1 1. Tương ứng là User 1 và User 1 1.\n- User 1 và User 1 1 có quyền tạo và đọc bản ghi cùng team.\n- Contact 1 và Contact 1 1 được gán User 1 và User 1 1 tương ứng.\n- Contact 2 và Contact 2 2 được gán Team 1 và Team 1 1 tương ứng\n- User 1 sẽ xem được toàn bộ 4 Contact\n- User 1 1 sẽ chỉ xem được Contact 1 1 và Contact 2 2.\n",
+      "content" : "## Test pdf engine\n\n- Engine xuất PDF được module hóa, có thể được switch dễ dàng\n- Test thử 2 engine tích hợp sẵn trong core: tcpdf và dompdf. Enginee xịn nhất: Snappy https://github.com/KnpLabs/snappy\n- Có thể tự viết engine mới\n- Add thêm font vào pdf engine\n- Add template helper: hàm dịch string\n- render template là file .html\n\n## Reverse Engineer\n- File chịu trách nhiệm gen pdf: `  Espo\\Tools\\Pdf\\Service; `\n- Với 1 entity, có thể định nghĩa hàm để lấy các field thêm phục vụ cho việc in ấn trong service của entityType đó:  ` loadAdditionalFields,   loadAdditionalFieldsForPdf`\n\n## Fix lỗi tiếng việt\n- Khi build font lưu ý  để TrueTypeUnicode sẽ không bị lỗi. \n1. Khi build TCPDF có thể để trống type để hàm build tự nhận\n    - Nếu đã build từ trước cần xóa file build cũ để build lại trong folder: ` site\\vendor\\tecnickcom\\tcpdf\\fonts `\n    - Cần cho quyền ghi folder build: ` site\\vendor\\tecnickcom\\tcpdf\\fonts `.\n    - Folder build đã fix không custom được. Về lý thuyết có thể custom bằng cách định nghĩa hằng số: ` K_PATH_FONTS `\n\n## Thêm Template helper\n### dubasTranslate helper\nThis helper will let you get label of field in specific language.\nYou just need to add this string to your template:\n\n`{{dubasTranslate scope='Task' category='fields' label='createdAt' language='de_DE'}}`\n\n**Parameters:**\n+ `dubasTranslate` - name of helper;\n+ `scope` - Scope from Label Manager;\n+ `category` - Category from scope which you set above;\n+ `label` - name of field which you want to translate;\n+ `language` - optional language parameter which determine in which you want to get translation. If you don't use this parameter, helper will use as default `en_US`.\n\n### dubasTranslateOption helper\nThis helper will let you get label for fields with options.\nYou just need to add this string to your template:\n\n`{{dubasTranslateOption scope='Task' field='status' value='Canceled' language='de_DE'}}`\n\n**Parameters:**\n+ `dubasTranslateOption` - name of helper;\n+ `scope` - Scope from Label Manager;\n+ `field` - Name of field with options;\n+ `value` - Name of options; \n+ `language` - optional language parameter which determine in which you want to get translation. If you don't use this parameter, helper will use as default `en_US`.\n\n### dubasTranslateValue helper\nThis helper will let you get label in specific language for actual value of field with options.\nYou just need to add this string to your template:\n\n`{{dubasTranslateValue id scope='Task' field='status' language='pl_PL'}}`\n\n**Parameters:**\n+ `dubasTranslateValue` - name of helper;\n+ `id` - id of specific record which will let us fetch value of field;\n+ `scope` - Scope from Label Manager;\n+ `field` - Name of field with options;\n+ `language` - optional language parameter which determine in which you want to get translation. If you don't use this parameter, helper will use as default `en_US`.\n\n### sttIncre\n- Hàm đếm số để đánh stt trong bảng\n\n**Parameters:**\n+ `sttIncre` - tên hàm;\n+ `start` - giá trị khởi tạo;\n+ `increase` - giá trị tăng thêm;\n+ `get` - có trả về giá trị không. nếu `get=true` thì trả về giá trị hiện tại;\n\n\n\n## Tham khảo\n- php pdf engine lib: https://ourcodeworld.com/articles/read/226/top-5-best-open-source-pdf-generation-libraries-for-php\n- google font extension: https://github.com/dubas-pro/ext-dubas-google-fonts\n- template helper dịch chuỗi extension: https://github.com/dubas-pro/ext-template-helper\n- ví dụ tcpdf: https://tcpdf.org/examples/example_061/\n- add custom emoji to template: https://forum.espocrm.com/forum/general/84550-pdf-template-fonts-unicode-emoji",
       "format" : "Markdown",
-      "filename" : "001 parent children team.md",
+      "filename" : "001 pdf engine.md",
       "order" : 1,
       "title" : ""
     } ],
@@ -24,11 +24,11 @@
       "date" : "2023-08-01T00:00:00Z",
       "status" : "Accepted"
     }, {
-      "content" : "# . version 0. 0. 1\n\nDate: 2023-10-19\n\n## Status\n\nAccepted\n\n## Release Note\n- no build file since this is a proof of concept\n",
+      "content" : "# . version 0. 0. 1\n\nDate: 2023-11-22\n\n## Status\n\nAccepted\n\n## Release Note\n- no build file since this is a proof of concept\n",
       "format" : "Markdown",
       "id" : "1",
       "title" : "version 0. 0. 1",
-      "date" : "2023-10-19T00:00:00Z",
+      "date" : "2023-11-22T00:00:00Z",
       "status" : "Accepted"
     } ]
   },
