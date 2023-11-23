@@ -7,6 +7,7 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\Resource\PathProvider;
 use TCPDF_FONTS;
+use Espo\Core\Utils\Log;
 
 class ApplyFonts
 {
@@ -54,7 +55,7 @@ class ApplyFonts
 
                 TCPDF_FONTS::addTTFfont(
                     realpath($fontList[$fontName]),
-                    'TrueType',
+                    '', // 'TrueType',
                     '',
                     32,
                     realpath($this->tcpdfFontsDir) . '/',
@@ -110,5 +111,10 @@ class ApplyFonts
     private function createPathProvider(): PathProvider
     {
         return $this->getInjectableFactory()->create(PathProvider::class);
+    }
+
+    private function getLog(): Log
+    {
+        return $this->container->get('log');
     }
 }
